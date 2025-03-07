@@ -100,3 +100,35 @@ FROM Tweets
 WHERE LENGTH(content ) > 15;
 
 --7. leetcode-user-activity-for-the-past-30-days.
+select 
+activity_date as day,
+count(distinct user_id) as active_users
+from Activity
+where activity_date between "2019-06-28" and "2019-07-27"
+group by activity_date
+having count(activity_type) >  0
+   
+--8. stratascratch-number-of-hires-during-specific-time-period.
+/*You have been asked to find the number of employees hired between the months of January and July in the year 2022 inclusive. */
+Your output should contain the number of employees hired in this given time frame.
+Select 
+count(distinct id)
+from employees
+where extract(month from joining_date) >=  1 and extract(month from joining_date)   <= 7
+and extract(year from joining_date) = 2022
+
+--9. stratascratch-positions-of-letter-a.
+/*Find the position of the lower case letter 'a' in the first name of the worker 'Amitah'.*/
+select 
+position('a'in first_name)
+from worker
+where first_name = 'Amitah';
+
+--10.stratascratch-macedonian-vintages.
+/*ind the vintage years of all wines from the country of Macedonia. 
+The year can be found in the 'title' column. 
+Output the wine (i.e., the 'title') along with the year. The year should be a numeric or int data type. */
+select 
+substring(title from length(winery)+2 for 4)
+from winemag_p2
+where country = 'Macedonia';
